@@ -21,6 +21,19 @@
                         <div x-show="openInv" x-transition class="absolute top-full left-0 w-48 bg-white shadow-2xl rounded-2xl border border-gray-50 py-3 z-50">
                             <x-dropdown-link :href="route('admin.products.index')" class="font-serif italic">{{ __('Luxury Inventory') }}</x-dropdown-link>
                             <x-dropdown-link :href="route('admin.categories.index')" class="font-serif italic">{{ __('Categories') }}</x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.spreadsheet')" class="font-serif italic text-[#C5A358]">
+    {{ __('Vault Architect') }}
+</x-dropdown-link>
+
+<x-dropdown-link :href="route('admin.spreadsheet.editor')" class="font-serif italic border-t border-gray-50">
+    {{ __('Spreadsheet Editor') }}
+</x-dropdown-link>
+<x-dropdown-link :href="route('admin.todo.categories')" class="font-serif italic text-gray-400">
+    {{ __('Manage Todo Structure') }}
+</x-dropdown-link>
+<x-dropdown-link :href="route('admin.todo.index')" class="font-serif italic text-blue-600">
+    {{ __('Task Architect') }}
+</x-dropdown-link>
                         </div>
                     </div>
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class Product extends Model
@@ -93,5 +93,21 @@ public function hasContentOn($platform): bool
 }
 
 
+// Di Model Product.php
+/**
+     * Relasi ke data spreadsheet dinamis
+     */
+    public function dynamic(): HasOne
+    {
+        return $this->hasOne(ProductDynamicData::class);
+    }
 
+    /**
+     * Helper untuk mengambil value spesifik dengan cepat
+     * Contoh: $product->getDynamic('Material')
+     */
+    public function getDynamic(string $key, $default = '—')
+    {
+        return $this->dynamic->values[$key] ?? $default;
+    }
 }

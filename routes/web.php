@@ -107,7 +107,27 @@ Route::prefix('inventory')->name('inventory.')->group(function () {
 
 
 
+Route::middleware(['auth', 'verified'])->group(function () {
 
+    // Route untuk Spreadsheet Manager
+    Volt::route('/admin/kolom/spreadsheet', 'admin.kolom.spreadsheet-manager')
+        ->name('admin.spreadsheet');
+Route::get('/admin/kolom/editor', function () {
+    return view('admin.spreadsheet.editor'); // Buat view pembungkus seperti sebelumnya
+})->name('admin.spreadsheet.editor');
+    // Route Dashboard atau Product lainnya bisa di sini...
+    Route::get('/admin/todo', function () {
+        return view('admin.todo.index');
+    })->name('admin.todo.index');
+
+Route::get('/admin/todo/categories', function () {
+        return view('admin.todo.categories');
+    })->name('admin.todo.categories');
+
+
+
+    
+});
 
 
 
@@ -132,9 +152,32 @@ Route::prefix('admin/marketing')->name('admin.marketing.')->group(function () {
             return view('admin.marketing.templates');
         })->name('templates');
 
+
+Route::prefix('admin/marketing')->name('admin.marketing.')->group(function () {
+
+        // 1. Dashboard Marketing & Content Hub
+        // Menampilkan semua konten yang sudah terposting (Database Konten)
+        Route::get('/', function () {
+            return view('admin.marketing.index');
+        })->name('index');
+
+        // 2. Content Studio (Livewire Volt yang kita buat tadi)
+        // Tempat buat konten baru dengan template fleksibel
+        Route::get('/studio', function () {
+            return view('admin.marketing.studio');
+        })->name('studio');
+
+        // 3. Template Manager (PENTING!)
+        // Tempat kamu nambahin field "Caption", "Link Canva", dll sesuka hati
+        Route::get('/templates', function () {
+            return view('admin.marketing.templates');
+        })->name('templates');
+
+
+
     });
 
-
+});
 
 
 
